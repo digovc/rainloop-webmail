@@ -19,11 +19,12 @@ module.exports = {
 //	devtool: "#source-map",
 	plugins: [
 //		new webpack.optimize.CommonsChunkPlugin('common.js'),
-		new webpack.optimize.OccurenceOrderPlugin()
+		new webpack.optimize.OccurrenceOrderPlugin()
 	],
 	resolve: {
-		root: path.resolve(__dirname, 'dev'),
-		extensions: ['', '.js', '.jsx'],
+		//root: path.resolve(__dirname, 'dev'),
+		modules: [path.resolve(__dirname, 'dev')],
+		extensions: ['.js', '.jsx'],
 		alias: {
 			'Opentip': __dirname  + '/dev/External/Opentip.js',
 			'ko': __dirname  + '/dev/External/ko.js'
@@ -33,7 +34,7 @@ module.exports = {
 		loaders: [
 			{
 				test: /\.jsx$/,
-				loader: 'babel',
+				loader: 'babel-loader',
 				exclude: /(node_modules|bower_components)/,
 				query: {
 					cacheDirectory: true,
